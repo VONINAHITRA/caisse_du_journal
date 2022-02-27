@@ -13,7 +13,7 @@
                     <div class="bs-example">
                        <br>
                       @include('flash-message')
-                      <a href="{{route('params.create')}}" class="btn btn-default btn-xs" style="padding: 3px; padding-left: 10px;padding-right: 10px;background-color: #8bc349;color:#fff"><i class="glyphicon glyphicon-plus"></i> Ajouter</a>
+                      <a href="{{route('params.create')}}" class="btn btn-default btn-xs" style="padding: 3px; padding-left: 10px;padding-right: 10px;background-color: #8bc349;color:#fff"> Nouveau</a>
                       <br>
                       <hr/>
                       <table class="table table-hover">
@@ -21,7 +21,7 @@
                           <tr style="text-align:center">
                             <th>&nbsp;&nbsp;Type</th>
                             <th>Description</th>
-                            <th width="12%">Actions</th>
+                            <th width="20%">Actions</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -35,14 +35,14 @@
                                  <form action="{{route('params.edit', [$type])}}" method="get" >
                                   @csrf
                                   @method('GET')
-                                 <button class="btn btn-warning btn-xs" ><i class="glyphicon glyphicon-edit" style="padding-left: 20px;padding-right: 20px;"></i></button>
+                                 <button class="btn btn-warning btn-xs" style="padding-right:21px; padding-left: 21px;">Edition</button>
                                  </form>
                                 </div>
                                 <div class="col-md-6">
                                  <form action ="{{route('params.destroy', $type->id)}}" method="get" onsubmit="return confirmAction();">
                                  @csrf
                                  @method('DELETE')
-                                 <button class="btn btn-danger btn-xs" type="submit" style="padding-left: 20px;padding-right: 20px;"><i class="glyphicon glyphicon-trash "></i></button>
+                                 <button class="btn btn-danger btn-xs" type="submit">Suppression</button>
                                 </form> 
                                </div>
                                </div>
@@ -51,6 +51,7 @@
                           @endforeach
                         </tbody>
                       </table>
+                    </div>
                     </div>
                     
                     </div>
