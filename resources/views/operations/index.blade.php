@@ -69,7 +69,7 @@
                           <div class="col-md-7" style="text-align: right;margin-top: -6px; text-align: right;">
                             <div class="row">
                             <h3>
-                            <div class="col-md-6" style="float: right;">
+                            <div class="col-md-6" style="float: right;font-size: 22px;font-style: normal;;font-weight:initial;">
                               <span id="afficherBillet"></span> <i class="glyphicon glyphicon-euro"></i>
                            </div>
                            </h3> 
@@ -116,7 +116,7 @@
                          <div class="col-md-7" style="text-align: right;margin-top: -6px; text-align: right;">
                             <div class="row">
                             <h3>
-                            <div class="col-md-6" style="float: right;">
+                            <div class="col-md-6" style="float: right;font-size: 22px;font-style: normal;font-weight:initial;">
                               <span id="afficherPiece"></span> <i class="glyphicon glyphicon-euro"></i>
                            </div>
                            </h3> 
@@ -168,7 +168,7 @@
                            <div class="col-md-7" style="text-align: right;margin-top: -6px; text-align: right;">
                             <div class="row">
                             <h3>
-                            <div class="col-md-6" style="float: right;">
+                            <div class="col-md-6" style="float: right;font-size: 22px;font-style: normal;;font-weight:initial;">
                                 <span id="afficherCentime"></span>
                                <i class="glyphicon glyphicon-euro"></i>
                            </div>
