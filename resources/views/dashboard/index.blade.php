@@ -25,8 +25,8 @@
                         <thead>
                           <tr style="text-align:center">
                             <th>Date</th>
-                            <th>Retraits</th>
                             <th>Ajouts</th>
+                            <th>Retraits</th>
                             <th>Total</th>
                             <th style="text-align:left;">Actions</th>
                           </tr>
@@ -34,7 +34,7 @@
                         <tbody>
                           @foreach($mouvements as $mvt)
                           <tr>
-                            <td>{{$mvt->dateMouvement}}</td>
+                            <td>{{date('d/m/Y',strtotime($mvt->dateMouvement))}}</td>
                             <td>{{$mvt->depot}}</td>
                             <td>{{($mvt->retrait) + ($mvt->remise)}}</td>
                             <td>{{$mvt->depot -($mvt->retrait + $mvt->remise)}}</td>
