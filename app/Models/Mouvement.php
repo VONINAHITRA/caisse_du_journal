@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mouvement extends Model
 {
-    use HasFactory;
-
     protected $primarykey = "idMouvement";
     public $table = 'mouvements';
     protected $fillable = [
@@ -23,5 +21,4 @@ class Mouvement extends Model
         'totalMouvementRemise',
         'totalMouvementRetrait',
     ];
-
 }
