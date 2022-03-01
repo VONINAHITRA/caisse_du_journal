@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Type;
 use App\Models\Mouvement;
+use DB;
 class MouvementController extends Controller
 {
     /**
@@ -43,7 +44,12 @@ class MouvementController extends Controller
        $billetMouvement = $request->get('billetMouvement');
        $pieceMouvement = $request->get('pieceMouvement');
        $centimeMouvement = $request->get('centimeMouvement');
-       
+
+       $verification = Mouvement::select(
+                              DB::raw("(sum(totalMouvementDepot)) as  depot"), 
+                              DB::raw("dateMouvement"))
+                              ->groupBy(DB::raw("dateMouvement"))->first();       
+
         if($typeMouvement=="dépôt de caisse"){
            $totalMouvementDepot = $request->get('totalMouvement');
            $addMouvementDepot = new Mouvement([
@@ -58,7 +64,10 @@ class MouvementController extends Controller
         $addMouvementDepot->save();
         return back()->with('success', 'L\'opération a été bien enregistré!');
         }else if($typeMouvement=="remise en banque"){
-        $totalMouvementRemise = $request->get('totalMouvement');
+         $totalMouvementRemise = $request->get('totalMouvement');
+              if($verification->depot < $totalMouvementRemise){
+               return back()->with('warning', 'Fond de caisse insufisant');
+              }
         $addMouvementRemise = new Mouvement([
           'typeMouvement' =>$typeMouvement ,        
           'commentMouvement' =>$commentMouvement ,        
@@ -73,6 +82,9 @@ class MouvementController extends Controller
 
         }else if($typeMouvement=="retrait"){
            $totalMouvementRetrait = $request->get('totalMouvement');
+           if($verification->depot < $totalMouvementRetrait){
+               return back()->with('warning', 'Fond de caisse insufisant');
+              }
            $addMouvementRetrait = new Mouvement([
           'typeMouvement' =>$typeMouvement ,        
           'commentMouvement' =>$commentMouvement ,        
