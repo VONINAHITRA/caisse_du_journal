@@ -44,7 +44,7 @@
                                   <form action="#" method="get" >
                                    @csrf
                                    @method('GET')
-                                   <button class="btn btn-warning btn-xs" style="padding: 5px;padding-right:21px; padding-left: 21px;"><i class="glyphicon glyphicon-edit"></i> Edition</button>
+                                   <button type="button" id="maintenance" class="btn btn-warning btn-xs" style="padding: 5px;padding-right:21px; padding-left: 21px;"><i class="glyphicon glyphicon-edit"></i> Edition</button>
                                   </form>
                                 </div>
                                 <div class="col-md-6">
@@ -75,6 +75,13 @@
     border: none;
   }
 </style>
+<!-- jquery -->
+<script type="text/javascript" src="{{asset('assets/js/jquery-3.1.1.min.js')}}"></script>
+<script>
+  $('#maintenance').on('click',function(){
+  alert("Cette fonctionnalité est en cours de maintenance, merci de votre patient :D");
+  });
+</script>
 @endsection
 
 
