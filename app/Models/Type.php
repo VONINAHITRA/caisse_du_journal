@@ -12,7 +12,7 @@ class Type extends Model
     
     protected $fillable = [
         'typeOperation', 
-         'description'
+        'description',
     ];
 
 }

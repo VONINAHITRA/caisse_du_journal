@@ -37,7 +37,7 @@
             <div class="input-group-addon" style="background: #8bc349;">
               <i class="glyphicon glyphicon-user"></i>
             </div>
-            <input type="text" style="background: #fff; color:#000; border-color: #ccc;" class="form-control user-login" maxlength="8" name="identifiant" id="identifiant" placeholder="Utilisateur" autocomplete="off" required />
+            <input type="text" style="background: #fff; color:#000; border-color: #ccc;" class="form-control user-login" maxlength="8" name="identifiantUser" id="identifiantUser" placeholder="Utilisateur" autocomplete="off" required />
           </div>
         </div>
 
@@ -46,7 +46,7 @@
             <div class="input-group-addon" style="background: #8bc349;">
               <i class=" glyphicon glyphicon-lock "></i>
             </div>
-            <input type="password" style="background: #fff; color:#000; border-color: #ccc;" class="form-control user-pwd" maxlength="15" name="motDePasse" id="motDePasse" placeholder="Mot de passe" autocomplete="off" required />
+            <input type="password" style="background: #fff; color:#000; border-color: #ccc;" class="form-control user-pwd" maxlength="15" name="motDePasseUser" id="motDePasseUser" placeholder="Mot de passe" autocomplete="off" required />
           </div>
         </div>
         <button class="btn btn-md btn-default btn-connexion " type="submit"><i class=" fa fa-sign-in "></i> Connexion</button>

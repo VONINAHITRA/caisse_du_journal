@@ -22,7 +22,7 @@
                         <a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a>
                       </div>
                     </div>
-                  @include('flash-message')
+                   @include('flash-message')
                   </div>
                 </div>
                </div>
@@ -59,6 +59,7 @@
               </div>
             </div>
           </div>
+          
        <style>
          .row-description{
           margin-top: -20px;

@@ -25,15 +25,16 @@ class AuthController extends Controller
      */
     public function connexion(Request $request)
     {
-        $identifiant = $request->identifiant;
-        $motDePasse = $request->motDePasse;
-        $connexion = User::where('identifiant',$identifiant)->where('motDePasse', $motDePasse)->first();
+
+        $identifiant = $request->identifiantUser;
+        $motDePasse = $request->motDePasseUser;
+        $connexion = User::where('identifiantUser',$identifiant)->where('motDePasseUser', $motDePasse)->first();
 
         if($connexion !=null){
          //session_start();
-            Session::put('id',$connexion->id);
-            Session::put('identifiant',$connexion->identifiant);
-            Session::put('motDePasse',$connexion->pseudo);
+            Session::put('id',$connexion->idUser);
+            Session::put('identifiantUser',$connexion->identifiantUser);
+            Session::put('motDePasseUser',$connexion->motDePasseUser);
             return redirect(route('index'));
             
         }else{
@@ -43,9 +44,9 @@ class AuthController extends Controller
 
     public function deconnexion(){
         Session::forget([
-            'id',
-            'identifiant',
-            'motDePasse'
+            'idUser',
+            'identifiantUser',
+            'motDePasseUser'
              ]);
         return redirect(route('authentification'));
     }

@@ -37,7 +37,7 @@
                            <div class="col-md-4">
                               <div class="form-group">
                                 <label for="">Type d'opération * </label>
-                                <input type="text" class="form-control" name="typeOperation"  value="{{$type->typeoperation}}" maxlength="25" required>
+                                <input type="text" class="form-control" name="typeOperation"  value="{{$type->typeOperation}}" maxlength="25" required>
                              </div>
                            </div>
                         </div>

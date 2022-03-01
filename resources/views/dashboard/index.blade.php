@@ -13,7 +13,9 @@
                        <div class="col-md-4">
                        <h4 style="font-weight: initial;">Total caisse</h4>
                        <hr/>
-                       <h3 style="font-style: normal;text-align: center;font-weight: initial;">220.5 <i class="glyphicon glyphicon-euro" style="font-weight: initial;"></i></h3>
+                       <h3 style="font-style: normal;text-align: center;font-weight: initial;">
+                        <?php echo strrev(wordwrap(strrev($resultats), 5, ' ', true)); ?>
+                        <i class="glyphicon glyphicon-euro" style="font-weight: initial;font-size: 22px;"></i></h3>
                       </div>
                      </div>
                     <div class="col-md-8">
@@ -22,20 +24,41 @@
                        <table class="table table-hover">
                         <thead>
                           <tr style="text-align:center">
-                            <th width="12%">Date</th>
-                            <th>&nbsp;&nbsp;Type</th>
-                            <th>Montant</th>
+                            <th>Date</th>
                             <th>Retraits</th>
                             <th>Ajouts</th>
                             <th>Total</th>
-                            <th>Actions</th>
+                            <th style="text-align:center,width:20px">Actions</th>
                           </tr>
                          </thead>
                         <tbody>
+                          @foreach($mouvements as $mvt)
                           <tr>
+                            <td>{{$mvt->dateMouvement}}</td>
+                            <td>{{$mvt->depot}}</td>
+                            <td>{{($mvt->retrait) + ($mvt->remise)}}</td>
+                            <td>{{$mvt->depot -($mvt->retrait + $mvt->remise)}}</td>
                             <td>
-                            </td>
+                              <div class="row">
+                                 <div class="col-md-6">
+                                 <form action="#" method="get" >
+                                  @csrf
+                                  @method('GET')
+                                 <button class="btn btn-warning btn-xs" style="padding-right:21px; padding-left: 21px;">Edition</button>
+                                 </form>
+                                </div>
+                                <div class="col-md-6">
+                                 <form action ="{{route('dashboard.destroy')}}" method="post" onsubmit="return confirmAction();">
+                                  <input type="hidden" value="{{$mvt->dateMouvement}}" name="dateMouvement">
+                                 @csrf
+                                 @method('GET')
+                                 <button class="btn btn-danger btn-xs" type="submit">Suppression</button>
+                                </form> 
+                               </div>
+                               </div>
+                              </td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>

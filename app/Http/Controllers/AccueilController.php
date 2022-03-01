@@ -14,7 +14,7 @@ class AccueilController extends Controller
     public function index()
     {
        //will be modifie
-       return view('dashboard/index');
+       return view('accueil');
     }
 
     /**

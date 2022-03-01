@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\ParametreController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\OperationController;
+use App\Http\Controllers\MouvementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +30,13 @@ Route::get('/deconnexion',  [AuthController::class, 'deconnexion'])->name("decon
 Route::get('/index', [AccueilController::class, 'index'])->name("index");
 
 //Opération route
-Route::name('operations.')->group(function () {
-Route::get('/operation/index',  [OperationController::class, 'index'])->name("index");
-Route::get('/operation/create', [OperationController::class, 'create'])->name("create");
-Route::post('/operation/store', [OperationController::class, 'store'])->name("store");
-Route::get('/operation/{idType}/destroy', [OperationController::class, 'destroy'])->name("destroy");
-Route::get('/operation/{idType}/edit', [OperationController::class, 'edit'])->name("edit");
-Route::post('/operation/{idType}/update', [OperationController::class, 'update'])->name("update");
+Route::name('mouvements.')->group(function () {
+Route::get('/mouvement/index',  [MouvementController::class, 'index'])->name("index");
+Route::get('/mouvement/create', [MouvementController::class, 'create'])->name("create");
+Route::post('/mouvement/store', [MouvementController::class, 'store'])->name("store");
+Route::get('/mouvement/{id}/destroy', [MouvementController::class, 'destroy'])->name("destroy");
+Route::get('/mouvement/{id}/edit', [MouvementController::class, 'edit'])->name("edit");
+Route::post('/mouvement/{id}/update', [MouvementController::class, 'update'])->name("update");
 });
 
 //Dasboard route
@@ -44,9 +44,9 @@ Route::name('dashboard.')->group(function () {
 Route::get('/dashboard/index',  [DashboardController::class, 'index'])->name("index");
 Route::get('/dashboard/create', [DashboardController::class, 'create'])->name("create");
 Route::post('/dashboard/store', [DashboardController::class, 'store'])->name("store");
-Route::get('/dashboard/{idType}/destroy', [DashboardController::class, 'destroy'])->name("destroy");
-Route::get('/dashboard/{idType}/edit', [DashboardController::class, 'edit'])->name("edit");
-Route::post('/dashboard/{idType}/update', [DashboardController::class, 'update'])->name("update");
+Route::get('/dashboard/destroy', [DashboardController::class, 'destroy'])->name("destroy");
+Route::get('/dashboard/{id}/edit', [DashboardController::class, 'edit'])->name("edit");
+Route::post('/dashboard/{id}/update', [DashboardController::class, 'update'])->name("update");
 });
 
 //Parametres route
@@ -54,7 +54,7 @@ Route::name('params.')->group(function () {
 Route::get('/parametre/index',  [ParametreController::class, 'index'])->name("index");
 Route::get('/parametre/create', [ParametreController::class, 'create'])->name("create");
 Route::post('/parametre/store', [ParametreController::class, 'store'])->name("store");
-Route::get('/parametre/{idType}/destroy', [ParametreController::class, 'destroy'])->name("destroy");
-Route::get('/parametre/{idType}/edit', [ParametreController::class, 'edit'])->name("edit");
-Route::post('/parametre/{idType}/update', [ParametreController::class, 'update'])->name("update");
+Route::post('/parametre/destroy', [ParametreController::class, 'destroy'])->name("destroy");
+Route::get('/parametre/{id}/edit', [ParametreController::class, 'edit'])->name("edit");
+Route::post('/parametre/{id}/update', [ParametreController::class, 'update'])->name("update");
 });

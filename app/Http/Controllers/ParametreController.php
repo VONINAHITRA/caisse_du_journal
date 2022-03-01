@@ -35,9 +35,9 @@ class ParametreController extends Controller
      */
     public function store(Request $request)
     {
+
        $typeOperation = $request->get('typeOperation');
        $description = $request->get('description');
-
        //Vérification if type existe yet.
        $verification = Type::where("typeOperation",$typeOperation)->first();
        if($verification ==NULL){
@@ -46,6 +46,7 @@ class ParametreController extends Controller
           'description' => $description,                
        ]);       
        $addType->save();
+       
        return back()->with('success', 'Type d\'operation a été bien enregistré!');
        }else{
        return back()->with('warning', 'Cet type d\'operation existe dejà dans la base, veuillez saisir un autre.');
@@ -59,9 +60,9 @@ class ParametreController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit($idType)
+    public function edit($id)
     {
-        $type = Type::findOrFail($idType);
+        $type = Type::findOrFail($id);
         return view('parametres/edit',compact('type'));
     }
 
@@ -97,9 +98,9 @@ class ParametreController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy($id)
+    public function destroy($idType)
     {
-        $type = Type::find($id);
+        $type = Type::find($idType);
         if($type->delete()){
             return back()->with('success', 'Type d\'operation a été bien supprimé !');
         }else{

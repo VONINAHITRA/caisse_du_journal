@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\models\Mouvement;
+use DB;
 class DashboardController extends Controller
 {
     /**
@@ -13,7 +14,22 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard/index');
+        //Get global
+        $totalDepot = Mouvement::select( DB::raw("SUM(totalMouvementDepot) as depot"))->where('typeMouvement','dépôt de caisse')->first();
+        $totalRemise = Mouvement::select( DB::raw("SUM(totalMouvementRemise) as remise"))->where('typeMouvement','remise en banque')->first();
+        $totalRetrait = Mouvement::select( DB::raw("SUM(totalMouvementRetrait) as retrait"))->where('typeMouvement','retrait')->first();
+        $resultats = $totalDepot->depot - ($totalRemise->remise + $totalRetrait->retrait);
+
+        $mouvements = Mouvement::select(
+                              DB::raw("(sum(totalMouvementDepot)) as  depot"),
+                              DB::raw("(sum(totalMouvementRetrait)) as retrait"), 
+                              DB::raw("(sum(totalMouvementRemise)) as remise"), 
+                              DB::raw("dateMouvement"))
+                              ->groupBy(DB::raw("dateMouvement"))->get();
+     //dd($totaltest);
+        //$mouvements = DB::table('mouvements')->select('dateMouvement')->groupBy('dateMouvement')->get();
+
+        return view('dashboard/index', compact("resultats","mouvements"));
     }
 
     /**
@@ -77,8 +93,10 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $date = $request->dateMouvement;
+        Mouvement::where("dateMouvement",$date)->delete();
+        return back()->with('success','L\opération de caisse a été bien supprimé ');
     }
 }

@@ -27,7 +27,7 @@
                         <tbody>
                           @foreach($types as $type)
                           <tr>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{$type->typeoperation}}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{$type->typeOperation}}</td>
                             <td>{{$type->description}}</td>
                             <td>
                               <div class="row">

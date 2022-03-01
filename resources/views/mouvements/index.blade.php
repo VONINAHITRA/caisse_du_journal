@@ -9,12 +9,15 @@
                   <div class="content-row">
                     <div class="row">
                       <h4 style="font-weight: initial;">Entrée de fond de caisse</h4>
+                       @include('flash-message')
                       <hr/>
+                      <form action="{{route('mouvements.store')}}" method="post">
+                        @csrf
                       <div class="col-md-12">
                           <div class="col-md-6">
                           <div class="form-group">
                           <label for="">Type d'opération</label>
-                          <select class="form-control" name="">
+                          <select class="form-control" name="typeMouvement">
                             @foreach($types as $type)
                             <option>{{$type["typeOperation"]}}</option>
                             @endforeach
@@ -22,7 +25,7 @@
                           </div>
                           </div>
                           <div class="col-md-6" style="text-align:right;">
-                           <h3><!--span id="total"></span--> <span id="globalTotalAll"></span><i class="glyphicon glyphicon-euro"></i></h3>
+                           <h3><span name="totalOperation" id="globalTotalAll"></span> <input type="hidden" name="totalMouvement" id="globalFinalJours"><i class="glyphicon glyphicon-euro"></i></h3>
                           </div>
                       </div>
 
@@ -30,14 +33,14 @@
                           <div class="col-md-4">
                           <div class="form-group">
                           <label for="">Date</label>
-                          <input type="date" class="form-control" name="" 
+                          <input type="date" class="form-control" name="dateMouvement" 
                             value="@php echo date('Y-m-d') @endphp" readonly>
                           </div>
                           </div>
                            <div class="col-md-12">
                           <div class="form-group">
-                          <label for="exampleInputEmail1">Note</label>
-                           <textarea class="form-control"></textarea>
+                          <label for="commentMouvement">Note</label>
+                           <textarea class="form-control" name="commentMouvement"></textarea>
                           </div>
                           </div>
                       </div>
@@ -70,13 +73,13 @@
                             <div class="row">
                             <h3>
                             <div class="col-md-6" style="float: right;font-size: 22px;font-style: normal;;font-weight:initial;">
-                              <span id="afficherBillet"></span> <i class="glyphicon glyphicon-euro"></i>
+                              <span id="afficherBillet"></span> <input type="hidden" name="billetMouvement" id="tmpSousTotalBillet"><i class="glyphicon glyphicon-euro"></i>
                            </div>
                            </h3> 
                           </div>
                           </div>
                           <div class="col-md-12">
-                            <button class="btn btn-default" id="btnBillet" style="background-color: #8bc349; color: #fff;">Ajouter</button>
+                            <button type="button" class="btn btn-default" id="btnBillet" style="background-color: #8bc349; color: #fff;">Ajouter</button>
                           </div>
                           <div class="col-md-12">
                             <div id="divB">
@@ -117,13 +120,13 @@
                             <div class="row">
                             <h3>
                             <div class="col-md-6" style="float: right;font-size: 22px;font-style: normal;font-weight:initial;">
-                              <span id="afficherPiece"></span> <i class="glyphicon glyphicon-euro"></i>
+                              <span id="afficherPiece"></span> <input type="hidden" name="pieceMouvement" id="tmpSousTotalPiece"><i class="glyphicon glyphicon-euro"></i>
                            </div>
                            </h3> 
                           </div>
                           </div>
                           <div class="col-md-12">
-                            <button class="btn btn-default" id="btnPiece" style="background-color: #8bc349; color: #fff;">Ajouter</button>
+                            <button type="button" class="btn btn-default" id="btnPiece" style="background-color: #8bc349; color: #fff;">Ajouter</button>
                           </div>
                           <div class="col-md-12">
                             <div id="divP">
@@ -134,7 +137,6 @@
                                 <td>Total</td>
                                 <td>Action</td>
                               </tr>
-                              
                             </table>
                             <span id="spiece"></span>
                           </div>
@@ -169,14 +171,13 @@
                             <div class="row">
                             <h3>
                             <div class="col-md-6" style="float: right;font-size: 22px;font-style: normal;;font-weight:initial;">
-                                <span id="afficherCentime"></span>
-                               <i class="glyphicon glyphicon-euro"></i>
+                                <span id="afficherCentime"></span> <input type="hidden" name="centimeMouvement" id="tmpSousTotalCentime"> <i class="glyphicon glyphicon-euro"></i>
                            </div>
                            </h3> 
                           </div>
                           </div>
                           <div class="col-md-12">
-                            <button class="btn btn-default" id="btnCentime" style="background-color: #8bc349; color: #fff;">Ajouter</button>
+                            <button type="button" class="btn btn-default" id="btnCentime" style="background-color: #8bc349; color: #fff;">Ajouter</button>
                           </div>
                            <div class="col-md-12">
                             <div id="divC">
@@ -191,15 +192,14 @@
                             <span id="sCentimer"></span>
                           </div>
                           </div>
-
                       </div>
                     </div>
 
                     <hr class="hrFin" />
                     <div class="row" style="text-align:center">
-                      <button class="btn btn-default" style="background-color: #424242; color: #fff;padding: 13px; padding-left: 25px;padding-right: 25px;">Enregistrer</button>
+                      <button type="submit" class="btn btn-default" style="background-color: #424242; color: #fff;padding: 13px; padding-left: 25px;padding-right: 25px;">Enregistrer</button>
                     </div>
-
+                       </form>
               </div>
             </div>
           </div>
@@ -228,25 +228,34 @@
         document.getElementById('afficherPiece').innerHTML=0;
         document.getElementById('afficherCentime').innerHTML=0;
         document.getElementById('globalTotalAll').innerHTML=0;
+        document.getElementById('tmpSousTotalBillet').value=0;
+        document.getElementById('tmpSousTotalPiece').value=0;
+        document.getElementById('tmpSousTotalCentime').value=0;
+        document.getElementById('globalFinalJours').value=0;
         document.getElementById('tableB').hidden=true;
         document.getElementById('tableP').hidden=true;
         document.getElementById('tableC').hidden=true;
-        
         });
 
        //append billet
        $('#btnBillet').on('click',function(){
+         var gettmpSousTotalB = parseFloat(document.getElementById('tmpSousTotalBillet').value);
          var nominalBillet = document.getElementById('nominalBillet').value;
          var qtBillet = document.getElementById('qtBillet').value; 
          if(qtBillet=="" || isNaN(qtBillet)) { alert("Veuillez saisir une valeur correcte"); return 0}
          document.getElementById('tableB').hidden=false;
          var resB = (nominalBillet * qtBillet);
-
          //update global Billet
          var globalTotal = parseFloat($('#globalTotalAll').text());
          var cumuleGlobalB = globalTotal + resB;
-             document.getElementById('globalTotalAll').innerHTML=cumuleGlobalB;
+         var finaly = document.getElementById('globalTotalAll').innerHTML=cumuleGlobalB;
+             document.getElementById('globalFinalJours').value=finaly;
 
+         //sous total
+         if(gettmpSousTotalB==null || gettmpSousTotalB==0){
+          document.getElementById('tmpSousTotalBillet').value=resB;
+         }
+         
          //temp
          var tmp = parseFloat($('#afficherBillet').text()); 
          if(tmp == 0 || tmp ==null){
@@ -256,19 +265,27 @@
          }
          var div = $('#tableB').append('<tr><td>'+nominalBillet+'</td><td>'+qtBillet+'</td><td id="tdVal">'+resB+'</td><td><button class="btn btn-danger btn-xs suprimerB">Supprimer</button></td></tr>');
 
-         //réinitialisé le calcul
-         document.getElementById('afficherBillet').innerHTML=0;
-         document.getElementById('qtBillet').value=""; 
+          //Tmp
+          var tmpSousTotalB = resB + gettmpSousTotalB;
+          var sousTotalFInal = document.getElementById('tmpSousTotalBillet').value=tmpSousTotalB;
+          document.getElementById('afficherBillet').innerHTML=sousTotalFInal;
+
        });
 
        //remove append billet
       $(document).on('click', 'button.suprimerB', function () {
-
         //update global billet
          var delB = parseFloat($(this).parents('tr').find('td:nth-child(3)').text());
          var globalTotal = parseFloat($('#globalTotalAll').text());
          var deleteGlobalB = globalTotal - delB;
-             document.getElementById('globalTotalAll').innerHTML=deleteGlobalB;
+         var finaly= document.getElementById('globalTotalAll').innerHTML=deleteGlobalB;
+             document.getElementById('globalFinalJours').value=finaly;
+
+          var gettmpSousTotalB = parseFloat(document.getElementById('tmpSousTotalBillet').value);
+          var tmpSousTotalB = gettmpSousTotalB-delB;
+          var sousTotalFInal = document.getElementById('tmpSousTotalBillet').value=tmpSousTotalB;
+          document.getElementById('afficherBillet').innerHTML=sousTotalFInal;
+
         //remove td
         $(this).closest('tr').remove();
         return false;
@@ -277,16 +294,23 @@
 
       //append pièces
        $('#btnPiece').on('click',function(){
+         var gettmpSousTotalP = parseFloat(document.getElementById('tmpSousTotalPiece').value);
          var nominalPiece = document.getElementById('nominalPiece').value;
          var qtPiece = document.getElementById('qtPiece').value; 
          if(qtPiece=="" || isNaN(qtPiece)) { alert("Veuillez saisir une valeur correcte"); return 0}
          document.getElementById('tableP').hidden=false;
          var resP = (nominalPiece * qtPiece);
 
+         //sous total
+         if(gettmpSousTotalP==null || gettmpSousTotalP==0){
+          document.getElementById('tmpSousTotalPiece').value=resP;
+         }
+
          //update global Pièce
          var globalTotal = parseFloat($('#globalTotalAll').text());
          var cumuleGlobalP = globalTotal + resP;
-             document.getElementById('globalTotalAll').innerHTML=cumuleGlobalP;
+         var finaly= document.getElementById('globalTotalAll').innerHTML=cumuleGlobalP;
+              document.getElementById('globalFinalJours').value=finaly;
 
          //tmp
          var tmp = parseFloat($('#afficherPiece').text()); 
@@ -297,9 +321,12 @@
          }
          var div = $('#tableP').append('<tr><td>'+nominalPiece+'</td><td>'+qtPiece+'</td><td>'+resP+'</td><td><button class="btn btn-danger btn-xs suprimerP">Supprimer</button></td></tr>');
 
-         //réinitialisé le calcul
-         document.getElementById('afficherPiece').innerHTML=0;
-         document.getElementById('qtPiece').value="";
+         //Tmp
+          var tmpSousTotalP = resP + gettmpSousTotalP;
+          var sousTotalFInal = document.getElementById('tmpSousTotalPiece').value=tmpSousTotalP;
+          document.getElementById('afficherPiece').innerHTML=sousTotalFInal;
+          console.log(sousTotalFInal);
+
        });
        //remove append pièces
       $(document).on('click', 'button.suprimerP', function () {
@@ -307,7 +334,13 @@
          var delP = parseFloat($(this).parents('tr').find('td:nth-child(3)').text());
          var globalTotal = parseFloat($('#globalTotalAll').text());
          var deleteGlobalP = globalTotal - delP;
-             document.getElementById('globalTotalAll').innerHTML=deleteGlobalP;
+         var finaly=  document.getElementById('globalTotalAll').innerHTML=deleteGlobalP;
+                      document.getElementById('globalFinalJours').value=finaly;
+
+          var gettmpSousTotalP = parseFloat(document.getElementById('tmpSousTotalPiece').value);
+          var tmpSousTotalP = gettmpSousTotalP-delP;
+          var sousTotalFInal = document.getElementById('tmpSousTotalPiece').value=tmpSousTotalP;
+          document.getElementById('afficherPiece').innerHTML=sousTotalFInal;
 
         //remove td
         $(this).closest('tr').remove();
@@ -316,6 +349,7 @@
 
       //append Centimes
        $('#btnCentime').on('click',function(){
+         var gettmpSousTotalC = parseFloat(document.getElementById('tmpSousTotalCentime').value);
          var nominalCentime = document.getElementById('nominalCentime').value;
          var qtCentime = document.getElementById('qtCentime').value; 
          if(qtCentime=="" || isNaN(qtCentime)) { alert("Veuillez saisir une valeur correcte"); return 0}
@@ -324,7 +358,12 @@
          //update global Pièce
          var globalTotal = parseFloat($('#globalTotalAll').text());
          var cumuleGlobalC = globalTotal + resC;
-             document.getElementById('globalTotalAll').innerHTML=cumuleGlobalC;
+          var finaly = document.getElementById('globalTotalAll').innerHTML=cumuleGlobalC;
+              document.getElementById('globalFinalJours').value=finaly;
+          //sous total
+         if(gettmpSousTotalC==null || gettmpSousTotalC==0){
+          document.getElementById('tmpSousTotalCentime').value=resC;
+         } 
 
          //tmp
          var tmp = parseFloat($('#afficherCentime').text()); 
@@ -333,11 +372,12 @@
          }else{
           var resCT = document.getElementById('afficherCentime').innerHTML=tmp;
          }
-         var div = $('#tableC').append('<tr><td>'+nominalCentime+'</td><td>'+qtCentime+'</td><td>'+resC+'</td><td><button class="btn btn-danger btn-xs suprimerC">Supprimer</button></td></tr>');
+         var div = $('#tableC').append('<tr name="ok"><td>'+nominalCentime+'</td><td>'+qtCentime+'</td><td>'+resC+'</td><td><button class="btn btn-danger btn-xs suprimerC">Supprimer</button></td></tr>');
 
-         //réinitialisé le calcul
-         document.getElementById('afficherCentime').innerHTML=0;
-         document.getElementById('qtCentime').value="";
+          //Tmp
+          var tmpSousTotalC = resC + gettmpSousTotalC;
+          var sousTotalFInal = document.getElementById('tmpSousTotalCentime').value=tmpSousTotalC;
+          document.getElementById('afficherCentime').innerHTML=sousTotalFInal; 
        });
 
        //remove append Centimes
@@ -346,7 +386,13 @@
          var delC = parseFloat($(this).parents('tr').find('td:nth-child(3)').text());
          var globalTotal = parseFloat($('#globalTotalAll').text());
          var deleteGlobalC = globalTotal - delC;
-             document.getElementById('globalTotalAll').innerHTML=deleteGlobalC;
+         var finaly = document.getElementById('globalTotalAll').innerHTML=deleteGlobalC;
+              document.getElementById('globalFinalJours').value=finaly;
+
+          var gettmpSousTotalC = parseFloat(document.getElementById('tmpSousTotalCentime').value);
+          var tmpSousTotalC = gettmpSousTotalC-delC;
+          var sousTotalFInal = document.getElementById('tmpSousTotalCentime').value=tmpSousTotalC;
+          document.getElementById('afficherCentime').innerHTML=sousTotalFInal;
              
         //remove td
         $(this).closest('tr').remove();

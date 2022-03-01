@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  if(Session::get('identifiant')==null){
+  if(Session::get('identifiantUser')==null){
    redirect()->to(route('authentification'))->send();
    }
   ?>

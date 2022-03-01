@@ -17,7 +17,7 @@
               <li class="active"><a href="getting-started.html"></a></li>
               <li class="active"><a href="index.html"></a></li>
               <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;{{Session::get('identifiant')}}<b class="caret"></b></a>
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;{{Session::get('identifiantUser')}}<b class="caret"></b></a>
                 <ul role="menu" class="dropdown-menu">
                   <li class="dropdown-header"></li>
                   <li class="deconnexion"><a href="{{route('auth.deconnexion')}}"><i class="glyphicon glyphicon-log-out"></i> Déconnexion</a></li>
