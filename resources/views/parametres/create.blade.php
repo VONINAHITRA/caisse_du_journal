@@ -11,7 +11,7 @@
                      <h3 id="tables-hover-rows"><u>Ajouter type d'opération</u></h3>
                     <div class="bs-example">
                        <br>
-                      <a href="{{route('params.index')}}" class="btn btn-xs" style="padding: 3px; padding-left: 10px;padding-right: 10px;background-color: #8bc349;"><i class="glyphicon glyphicon-arrow-left"></i> retour</a>
+                      <a href="{{route('params.index')}}" class="btn " style="padding-right: 10px;background-color: #8bc349;"><i class="glyphicon glyphicon-arrow-left"></i> retour</a>
                       <br>
                       <br>
                      <div class="content-row">
@@ -50,7 +50,7 @@
                           </div>
                            </div>
                         </div>
-                        <button type="submit" class="btn btn-default btn-xs" style="padding-left: 12px;padding-right: 12px;background-color:#424242 ;"> Enregistrer</button>
+                        <button type="submit" class="btn btn-default" style="background-color:#424242 ;"><i class="glyphicon glyphicon-check"></i> Enregistrer</button>
                       </form>
                     </div>
                   </div>

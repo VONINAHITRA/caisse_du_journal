@@ -13,7 +13,7 @@
                     <div class="bs-example">
                        <br>
                       @include('flash-message')
-                      <a href="{{route('params.create')}}" class="btn btn-default btn-xs" style="padding: 3px; padding-left: 10px;padding-right: 10px;background-color: #8bc349;color:#fff"> Nouveau</a>
+                      <a href="{{route('params.create')}}" class="btn btn-default" style="padding-right: 10px;background-color: #8bc349;color:#fff"><i class="glyphicon glyphicon-plus"></i> Nouveau</a>
                       <br>
                       <hr/>
                       <table class="table table-hover">
@@ -35,14 +35,14 @@
                                  <form action="{{route('params.edit', [$type])}}" method="get" >
                                   @csrf
                                   @method('GET')
-                                 <button class="btn btn-warning btn-xs" style="padding-right:21px; padding-left: 21px;">Edition</button>
+                                 <button class="btn btn-warning btn-xs" style="padding-right:21px; padding-left: 21px;"><i class="glyphicon glyphicon-edit"></i> Edition</button>
                                  </form>
                                 </div>
                                 <div class="col-md-6">
                                  <form action ="{{route('params.destroy', $type->id)}}" method="get" onsubmit="return confirmAction();">
                                  @csrf
                                  @method('DELETE')
-                                 <button class="btn btn-danger btn-xs" type="submit">Suppression</button>
+                                 <button class="btn btn-danger btn-xs" type="submit"><i class="glyphicon glyphicon-trash"></i> Suppression</button>
                                 </form> 
                                </div>
                                </div>

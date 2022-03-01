@@ -4,56 +4,55 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a></h3>
-              </div>
+               </div>
               <div class="panel-body">
                   <div class="content-row">
                     <div class="row">
                       <h4 style="font-weight: initial;">Entrée de fond de caisse</h4>
                        @include('flash-message')
-                      <hr/>
+                     <hr/>
                       <form action="{{route('mouvements.store')}}" method="post">
                         @csrf
-                      <div class="col-md-12">
-                          <div class="col-md-6">
-                          <div class="form-group">
-                          <label for="">Type d'opération</label>
-                          <select class="form-control" name="typeMouvement">
-                            @foreach($types as $type)
-                            <option>{{$type["typeOperation"]}}</option>
-                            @endforeach
-                          </select>
-                          </div>
-                          </div>
-                          <div class="col-md-6" style="text-align:right;">
+                          <div class="col-md-12">
+                            <div class="col-md-6">
+                             <div class="form-group">
+                              <label for="">Type d'opération</label>
+                               <select class="form-control" name="typeMouvement">
+                                 @foreach($types as $type)
+                                  <option>{{$type["typeOperation"]}}</option>
+                                 @endforeach
+                               </select>
+                              </div>
+                             </div>
+                            <div class="col-md-6" style="text-align:right;">
                            <h3><span name="totalOperation" id="globalTotalAll"></span> <input type="hidden" name="totalMouvement" id="globalFinalJours"><i class="glyphicon glyphicon-euro"></i></h3>
                           </div>
-                      </div>
+                       </div> 
 
-                      <div class="col-md-12">
+                       <div class="col-md-12">
                           <div class="col-md-4">
-                          <div class="form-group">
-                          <label for="">Date</label>
-                          <input type="date" class="form-control" name="dateMouvement" 
-                            value="@php echo date('Y-m-d') @endphp" readonly>
-                          </div>
-                          </div>
+                            <div class="form-group">
+                              <label for="">Date</label>
+                              <input type="date" class="form-control" name="dateMouvement" value="@php echo date('Y-m-d') @endphp" readonly>
+                             </div>
+                            </div>
                            <div class="col-md-12">
-                          <div class="form-group">
-                          <label for="commentMouvement">Note</label>
-                           <textarea class="form-control" name="commentMouvement"></textarea>
+                           <div class="form-group">
+                             <label for="commentMouvement">Note</label>
+                             <textarea class="form-control" name="commentMouvement"></textarea>
                           </div>
                           </div>
                       </div>
                     </div>
 
-                    <div class="row">
+                     <div class="row">
                       <h4 style="font-weight: initial;">Billets</h4>
-                      <hr/>
-                      <div class="col-md-12">
-                          <div class="col-md-3">
-                          <div class="form-group">
-                           <label for="">Nominal</label>
-                            <select class="form-control" name="nominalBillet" id="nominalBillet" onChange="selectBillet(event);">
+                       <hr/>
+                       <div class="col-md-12">
+                         <div class="col-md-3">
+                         <div class="form-group">
+                         <label for="">Nominal</label>
+                           <select class="form-control" name="nominalBillet" id="nominalBillet" onChange="selectBillet(event);">
                             <option>0</option>
                             <option>5</option>
                             <option>10</option>
@@ -62,7 +61,7 @@
                             <option>100</option>
                             <option>200</option>
                             <option>500</option>
-                          </select>
+                           </select>
                           </div>
                           </div>
                           <div class="col-md-2">
@@ -74,12 +73,12 @@
                             <h3>
                             <div class="col-md-6" style="float: right;font-size: 22px;font-style: normal;;font-weight:initial;">
                               <span id="afficherBillet"></span> <input type="hidden" name="billetMouvement" id="tmpSousTotalBillet"><i class="glyphicon glyphicon-euro"></i>
-                           </div>
-                           </h3> 
+                            </div>
+                            </h3> 
                           </div>
                           </div>
                           <div class="col-md-12">
-                            <button type="button" class="btn btn-default" id="btnBillet" style="background-color: #8bc349; color: #fff;">Ajouter</button>
+                            <button type="button" class="btn btn-default" id="btnBillet" style="padding: 5px;padding-right:21px; padding-left: 21px;background-color: #8bc349; color: #fff;"><i class="glyphicon glyphicon-plus"></i> Ajouter</button>
                           </div>
                           <div class="col-md-12">
                             <div id="divB">
@@ -90,7 +89,6 @@
                                 <td>Total</td>
                                 <td>Action</td>
                               </tr>
-                              
                             </table>
                             <span id="sBillet"></span>
                           </div>
@@ -116,32 +114,31 @@
                             <label for="">Quantité</label>
                             <input type="text" class="form-control" name="qtPiece" id="qtPiece" onkeyPress="calculerPiece(event);" onkeyup="effacerPiece(event);">
                           </div>
-                         <div class="col-md-7" style="text-align: right;margin-top: -6px; text-align: right;">
+                          <div class="col-md-7" style="text-align: right;margin-top: -6px; text-align: right;">
                             <div class="row">
-                            <h3>
-                            <div class="col-md-6" style="float: right;font-size: 22px;font-style: normal;font-weight:initial;">
+                             <h3>
+                              <div class="col-md-6" style="float: right;font-size: 22px;font-style: normal;font-weight:initial;">
                               <span id="afficherPiece"></span> <input type="hidden" name="pieceMouvement" id="tmpSousTotalPiece"><i class="glyphicon glyphicon-euro"></i>
                            </div>
                            </h3> 
                           </div>
                           </div>
                           <div class="col-md-12">
-                            <button type="button" class="btn btn-default" id="btnPiece" style="background-color: #8bc349; color: #fff;">Ajouter</button>
+                            <button type="button" class="btn btn-default" id="btnPiece" style="padding: 5px;padding-right:21px; padding-left: 21px;background-color: #8bc349; color: #fff;"><i class="glyphicon glyphicon-plus"></i> Ajouter</button>
                           </div>
                           <div class="col-md-12">
                             <div id="divP">
-                            <table class="table table-hover" id="tableP">
+                             <table class="table table-hover" id="tableP">
                               <tr>
                                 <td>Nominal</td>
                                 <td>Quantité</td>
                                 <td>Total</td>
                                 <td>Action</td>
                               </tr>
-                            </table>
+                             </table>
                             <span id="spiece"></span>
+                           </div>
                           </div>
-                          </div>
-        
                       </div>
                     </div>
 
@@ -164,64 +161,64 @@
                           </div>
                           </div>
                           <div class="col-md-2">
-                            <label for="">Quantité</label>
-                            <input type="text" class="form-control" name="qtCentime" id="qtCentime" onkeyPress="calculerCentime(event);" onkeyup="effacerCentime(event);">
+                          <label for="">Quantité</label>
+                          <input type="text" class="form-control" name="qtCentime" id="qtCentime" onkeyPress="calculerCentime(event);" onkeyup="effacerCentime(event);">
                           </div>
                            <div class="col-md-7" style="text-align: right;margin-top: -6px; text-align: right;">
                             <div class="row">
                             <h3>
                             <div class="col-md-6" style="float: right;font-size: 22px;font-style: normal;;font-weight:initial;">
-                                <span id="afficherCentime"></span> <input type="hidden" name="centimeMouvement" id="tmpSousTotalCentime"> <i class="glyphicon glyphicon-euro"></i>
+                            <span id="afficherCentime"></span> <input type="hidden" name="centimeMouvement" id="tmpSousTotalCentime"> <i class="glyphicon glyphicon-euro"></i>
                            </div>
                            </h3> 
                           </div>
                           </div>
                           <div class="col-md-12">
-                            <button type="button" class="btn btn-default" id="btnCentime" style="background-color: #8bc349; color: #fff;">Ajouter</button>
+                            <button type="button" class="btn btn-default" id="btnCentime" style="padding: 5px;padding-right:21px; padding-left: 21px;background-color: #8bc349; color: #fff;"><i class="glyphicon glyphicon-plus"></i> Ajouter</button>
                           </div>
                            <div class="col-md-12">
-                            <div id="divC">
-                            <table class="table table-hover" id="tableC">
-                              <tr>
-                                <td>Nominal</td>
-                                <td>Quantité</td>
-                                <td>Total</td>
-                                <td>Action</td>
-                              </tr>
-                            </table>
+                             <div id="divC">
+                              <table class="table table-hover" id="tableC">
+                                <tr>
+                                  <td>Nominal</td>
+                                  <td>Quantité</td>
+                                  <td>Total</td>
+                                  <td>Action</td>
+                                </tr>
+                              </table>
                             <span id="sCentimer"></span>
                           </div>
-                          </div>
+                         </div>
                       </div>
                     </div>
 
                     <hr class="hrFin" />
                     <div class="row" style="text-align:center">
-                      <button type="submit" class="btn btn-default" style="background-color: #424242; color: #fff;padding: 13px; padding-left: 25px;padding-right: 25px;">Enregistrer</button>
+                      <button type="submit" class="btn btn-default " style="background-color: #424242; color: #fff;padding: 13px; padding-left: 25px;padding-right: 25px;"><i class="glyphicon glyphicon-check"></i> Enregistrer</button>
                     </div>
-                       </form>
+                </form>
               </div>
             </div>
           </div>
         </div>
-        <style>
-          hr{
-            height: 4px;
-            background-color: #e0d396;
-            border: none;
-          }
-          .hrFin{
-            height: 2px;
-            background-color:#f0f1f6;
-            border: none;
-          }
-        </style>
-        <!-- TotalGblobal -->
 
-      
-      <!-- jquery -->
-      <script type="text/javascript" src="{{asset('assets/js/jquery-3.1.1.min.js')}}"></script>
-      <script>
+  <!-- Little style global for mouvment -->
+  <style>
+    hr{
+      height: 4px;
+      background-color: #e0d396;
+      border: none;
+    }
+    .hrFin{
+      height: 2px;
+      background-color:#f0f1f6;
+      border: none;
+    }
+  </style>
+        
+<!-- jquery -->
+<script type="text/javascript" src="{{asset('assets/js/jquery-3.1.1.min.js')}}"></script>
+<script>
       //Initialisation
       $(document).ready(function(){
         document.getElementById('afficherBillet').innerHTML=0;
@@ -245,6 +242,7 @@
          if(qtBillet=="" || isNaN(qtBillet)) { alert("Veuillez saisir une valeur correcte"); return 0}
          document.getElementById('tableB').hidden=false;
          var resB = (nominalBillet * qtBillet);
+
          //update global Billet
          var globalTotal = parseFloat($('#globalTotalAll').text());
          var cumuleGlobalB = globalTotal + resB;
@@ -269,7 +267,6 @@
           var tmpSousTotalB = resB + gettmpSousTotalB;
           var sousTotalFInal = document.getElementById('tmpSousTotalBillet').value=tmpSousTotalB;
           document.getElementById('afficherBillet').innerHTML=sousTotalFInal;
-
        });
 
        //remove append billet
@@ -280,7 +277,6 @@
          var deleteGlobalB = globalTotal - delB;
          var finaly= document.getElementById('globalTotalAll').innerHTML=deleteGlobalB;
              document.getElementById('globalFinalJours').value=finaly;
-
           var gettmpSousTotalB = parseFloat(document.getElementById('tmpSousTotalBillet').value);
           var tmpSousTotalB = gettmpSousTotalB-delB;
           var sousTotalFInal = document.getElementById('tmpSousTotalBillet').value=tmpSousTotalB;
@@ -290,7 +286,6 @@
         $(this).closest('tr').remove();
         return false;
        });
-
 
       //append pièces
        $('#btnPiece').on('click',function(){
@@ -326,17 +321,17 @@
           var sousTotalFInal = document.getElementById('tmpSousTotalPiece').value=tmpSousTotalP;
           document.getElementById('afficherPiece').innerHTML=sousTotalFInal;
           console.log(sousTotalFInal);
-
        });
+
        //remove append pièces
       $(document).on('click', 'button.suprimerP', function () {
+
         //update global billet
          var delP = parseFloat($(this).parents('tr').find('td:nth-child(3)').text());
          var globalTotal = parseFloat($('#globalTotalAll').text());
          var deleteGlobalP = globalTotal - delP;
          var finaly=  document.getElementById('globalTotalAll').innerHTML=deleteGlobalP;
                       document.getElementById('globalFinalJours').value=finaly;
-
           var gettmpSousTotalP = parseFloat(document.getElementById('tmpSousTotalPiece').value);
           var tmpSousTotalP = gettmpSousTotalP-delP;
           var sousTotalFInal = document.getElementById('tmpSousTotalPiece').value=tmpSousTotalP;
@@ -355,11 +350,13 @@
          if(qtCentime=="" || isNaN(qtCentime)) { alert("Veuillez saisir une valeur correcte"); return 0}
          document.getElementById('tableC').hidden=false;
          var resC = (nominalCentime * qtCentime) / 100;
+
          //update global Pièce
          var globalTotal = parseFloat($('#globalTotalAll').text());
          var cumuleGlobalC = globalTotal + resC;
           var finaly = document.getElementById('globalTotalAll').innerHTML=cumuleGlobalC;
               document.getElementById('globalFinalJours').value=finaly;
+
           //sous total
          if(gettmpSousTotalC==null || gettmpSousTotalC==0){
           document.getElementById('tmpSousTotalCentime').value=resC;
@@ -423,22 +420,22 @@
        function selectBillet(event){
        var nominalBillet = document.getElementById('nominalBillet').value;
        var qtBillet = document.getElementById('qtBillet').value;
-       if(isNaN(qtBillet)){
+          if(isNaN(qtBillet)){
           document.getElementById('qtBillet').style.color="red";
           document.getElementById('afficherBillet').innerHTML=0;
-          
           return 0;
-        }
-        document.getElementById('qtBillet').style.color="#000";
+          }
+          document.getElementById('qtBillet').style.color="#000";
        var res = (nominalBillet * qtBillet);
+
        //sTotal(event);
        var afficher = document.getElementById('afficherBillet').innerHTML=res;
-        
         console.log(afficher);
        }
 
       function effacerBillet(event){
         if(event.keyCode ===8){
+
          // sTotal(event);
        var nominalBillet = document.getElementById('nominalBillet').value;
        var qtBillet      = document.getElementById('qtBillet').value;
@@ -446,7 +443,6 @@
        if(isNaN(qtBillet)){
           document.getElementById('qtBillet').style.color="red";
           document.getElementById('afficherBillet').innerHTML=0;
-                    
           return 0;
         }
         document.getElementById('qtBillet').style.color="#000";
@@ -466,12 +462,12 @@
        if(isNaN(qtPiece)){
           document.getElementById('qtPiece').style.color="red";
           document.getElementById('afficherPiece').innerHTML=0;
-          
           return 0;
         }
         document.getElementById('qtPiece').style.color="#000";
        var res = (nominalPiece * qtPiece);
        var afficher = document.getElementById('afficherPiece').innerHTML=res;
+
        //sTotal(event);
         console.log(afficher);
        }
@@ -482,7 +478,6 @@
        if(isNaN(qtPiece)){
           document.getElementById('qtPiece').style.color="red";
           document.getElementById('afficherPiece').innerHTML=0;
-          
           return 0;
         }
         document.getElementById('qtPiece').style.color="#000";
@@ -500,12 +495,13 @@
        if(isNaN(qtPiece)){
           document.getElementById('qtPiece').style.color="red";
           document.getElementById('afficherPiece').innerHTML=0;
-          
           return 0;
         }
+
         document.getElementById('qtPiece').style.color="#000";
        var res = (nominalPiece * qtPiece);
        var afficher = document.getElementById('afficherPiece').innerHTML=res;
+
       // sTotal(event);
         }else{
        calculerPiece(event);    
@@ -519,12 +515,12 @@
         if(isNaN(qtCentime)){
           document.getElementById('qtCentime').style.color="red";
           document.getElementById('afficherCentime').innerHTML=0;
-          
           return 0;
         }
         document.getElementById('qtCentime').style.color="#000";
        var res = Math.abs((nominalCentime * qtCentime) / 100) ;
        var afficher = document.getElementById('afficherCentime').innerHTML=res;
+
       // sTotal(event);
         console.log(afficher);
        }
@@ -535,12 +531,14 @@
        if(isNaN(qtCentime)){
           document.getElementById('qtCentime').style.color="red";
           document.getElementById('afficherCentime').innerHTML=0;
+
           // document.getElementById('total').innerHTML=0;
           return 0;
         }
         document.getElementById('qtCentime').style.color="#000";
        var res = (nominalCentime * qtCentime) / 100;
        var afficher = document.getElementById('afficherCentime').innerHTML=res;
+
        //sTotal(event);
         console.log(afficher);
        }
@@ -552,12 +550,12 @@
        if(isNaN(qtCentime)){
            document.getElementById('qtCentime').style.color="red";
            document.getElementById('afficherCentime').innerHTML=0;
-           
           return 0;
         }
        document.getElementById('qtCentime').style.color="#000";
        var res = (nominalCentime * qtCentime) / 100;
        var afficher = document.getElementById('afficherCentime').innerHTML=res;
+
        //sTotal(event);
         }else{
        calculerCentime(event);    
@@ -568,9 +566,6 @@
       function total(){
 
       }
-
-     
-
     </script>
 @endsection
 

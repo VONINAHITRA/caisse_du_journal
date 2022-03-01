@@ -9,7 +9,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand"> <i class="glyphicon glyphicon-euro"></i> JOURNALE DE CAISSE</a>
+            <a href="#" class="navbar-brand"> <i class="glyphicon glyphicon-euro"></i>AISSE DU JOUR</a>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div id="bs-content-row-navbar-collapse-5" class="collapse navbar-collapse">
