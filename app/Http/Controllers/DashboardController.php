@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Mouvement;
+use App\Models\Mouvement;
 use DB;
 class DashboardController extends Controller
 {
